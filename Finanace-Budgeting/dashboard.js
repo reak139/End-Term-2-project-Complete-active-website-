@@ -65,7 +65,7 @@ select.addEventListener('change', () => {
         return;
     }
 
-    tickets.forEach(ticket => {
+    expenseTickets.forEach(ticket => {
         if (ticket.dataset.category === selected) {
             ticket.classList.remove("hidden");
             ticket.classList.add("centered");

@@ -231,6 +231,10 @@ body {
 .ticket-boss.hidden {
     display: none;
 }
+.ticket-boss.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 /* =========================
