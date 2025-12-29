@@ -1,0 +1,429 @@
+/* =========================
+   GLOBAL PAGE STYLES
+========================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #6a11cb,
+        #b06ab3,
+        #4568dc,
+        #b06ab3
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   TOP PANEL / NAVBAR
+========================= */
+.panel {
+    margin: 30px 20px;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.white {
+    color: white;
+}
+
+.choosing-from {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 40%;
+    font-size: 20px;
+    margin-right: 150px;
+    margin-left: 50px;
+}
+
+.signUp {
+    width: 150px;
+    height: 50px;
+
+    border-radius: 15%;
+    background-color: rgb(215, 40, 154);
+    color: white;
+    font-size: 18px;
+}
+
+/* =========================
+   MAIN TITLE
+========================= */
+.Finance-Tracker-Title {
+    max-width: 700px;
+    margin: 60px auto 40px;
+    padding: 30px 40px;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    text-align: center;
+    font-style: italic;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.Finance-Tracker-Title h1 {
+    font-size: 42px;
+    margin: 0;
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   MODE SELECTOR CARDS
+========================= */
+.mode-selector {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 60px 0;
+}
+
+.mode-card {
+    width: 180px;
+    height: 90px;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+
+    border-radius: 18px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mode-card span {
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.mode-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.mode-card.active {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* =========================
+   EXPENSE HEADER & DROPDOWN
+========================= */
+.summary-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.title-for-expense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.title-for-expense h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.expenses {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 14px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.expenses-text {
+    background-color: rgb(212, 123, 197);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.choose {
+    height: 38px;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 8px;
+}
+
+
+/* =========================
+   EXPENSE TICKET GRID
+========================= */
+.more-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.ticket-boss {
+    width: 240px;
+    min-height: 420px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ticket-boss:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+}
+
+.ticket-boss.hidden {
+    display: none;
+}
+
+
+/* =========================
+   TICKET CONTENT
+========================= */
+.ticket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.ticket input {
+    width: 85%;
+    padding: 8px 10px;
+
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.ticket input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.5);
+}
+
+/* =========================
+   TOTALS & CHART
+========================= */
+.category-total {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 2px dashed rgba(0, 0, 0, 0.4);
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.total-value {
+    color: #6a1b9a;
+    font-size: 22px;
+}
+
+.chart-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.chart-container h2 {
+    margin-bottom: 20px;
+    color: #2c124f;
+}
+
+/* =========================
+   INCOME HEADER & DROPDOWN
+========================= */
+
+.summary-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.title-for-income {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.title-for-income h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.income {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 14px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.income-text {
+    background-color: rgb(212, 123, 197);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.choose {
+    height: 38px;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 8px;
+}
+
+.chart-container-income {
+    width: 380px;
+    max-width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.income-ticket {
+    width: 480px;
+    margin-right: 100px;
+}
+#incomeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* =========================
+   BALANCE SECTION
+========================= */
+
+.balance-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+
+.balance-card {
+    width: 380px;
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.balance-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+.balance-row.net {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.balance-status {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.balance-status.positive {
+    background: rgba(76, 175, 80, 0.3);
+    color: #1b5e20;
+}
+
+.balance-status.negative {
+    background: rgba(244, 67, 54, 0.3);
+    color: #b71c1c;
+}
+
+.chart-container-balance {
+    width: 380px;
+}

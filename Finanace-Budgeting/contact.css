@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        180deg,
+        #9790c1,
+        #4568dc,
+        #288595
+    );
+    height: auto;
+    width: auto;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.contact-us-heading{
+    color: white;
+    height: 100px;
+    font-size: 25px;
+}
+.para{
+    font-size: large;
+    color: white;
+}
+.box-size{
+    width: 400px;
+}
+.width-box{
+    height: 100px;
+}
+.panel {
+    margin: 30px 20px;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.white {
+    color: white;
+}
+
+.choosing-from {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 40%;
+    font-size: 20px;
+}
+
+.signUp {
+    width: 150px;
+    height: 50px;
+
+    border-radius: 15%;
+    background-color: rgb(215, 40, 154);
+    color: white;
+    font-size: 18px;
+}
+.submitBtn{
+    margin: 20px;
+    padding: 10px;
+    width: 420px;
+    background-color:#39adc1;
+}

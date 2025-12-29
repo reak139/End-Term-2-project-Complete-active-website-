@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="panel">
+        <div class="logo">
+            <img src="https://png.pngtree.com/png-clipart/20220924/original/pngtree-business-financial-logo-png-image_8629794.png"
+                height="100px">
+        </div>
+        <div class="choosing-from">
+            <a href="landingpage.html" class="home white">Home</a>
+            <a href="dashboard.html" class="dashboard white">DashBoard</a>
+            <a href="contact.html" class="contact white">Contact</a>
+        </div>
+        <div class="sign-Up">
+            <button class="signUp"><Strong>Sign Up</Strong></button>
+        </div>
+    </div>
+    <div class="Finance-Tracker-Title">
+        <h1>Personal Finance Tracker</h1>
+    </div>
+    <div class="home">
+        <div class="button">
+            <div class="mode-selector">
+                <div class="mode-card active" data-mode="expenses">
+                    💸 <span>Expenses</span>
+                </div>
+                <div class="mode-card" data-mode="income">
+                    💰 <span>Income</span>
+                </div>
+                <div class="mode-card" data-mode="balance">
+                    📊 <span>Balance</span>
+                </div>
+            </div>
+
+        </div>
+        <div id="expensesSection">
+            <div class="summary-section">
+                <div class="title-for-expense">
+                    <h1>Please select all your<br>monthly expenses</h1>
+                    <div class="expenses">
+                        <span class="expenses-text">Expenses</span>
+                        <select class="choose" name="type">
+                            <option value="">Select--</option>
+                            <option value="Basic-living-expenses" data-category="Basic-living-Expenses">Basic living
+                                Expenses</option>
+                            <option value="Transportation" data-category="Transportation">Transportation Expenses
+                            </option>
+                            <option value="Food" data-category="Food">Food & Daily Expenses</option>
+                            <option value="Education" data-category="Education">Education / Skill Expenses</option>
+                            <option value="Lifestyle-Entertainment" data-category="Lifestyle-Entertainment">Lifestyle
+                                and
+                                Entertainment</option>
+                            <option value="Health" data-category="Health">Health and Emergency</option>
+                            <option value="Savings" data-category="Savings">Savings</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="more-select">
+                <div class="chart-container">
+                    <h2>Expense Distribution</h2>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+
+                <div class="Basic-living-Expenses ticket-boss expense-ticket" data-category="Basic-living-expenses">
+                    <div class="rent ticket">Rent
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Electricity-bill ticket ">Electricity Bill
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Water-Bill ticket">Water Bill
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Internet ticket">Internet / Mobile Recharge
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Groceries ticket">Groceries
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="Transportation ticket-boss expense-ticket" data-category="Transportation">
+                    <div class="fuel ticket">Fuel
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="cab ticket">Cab / Auto
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Bus ticket">Bus / Metro Pass
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="vehicle ticket">vehicle
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total ">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="Food ticket-boss expense-ticket" data-category="Food">
+                    <div class="Dining-Out ticket">Dining-Out
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="Tea ticket">Tea / Coffee / snacks
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="daily-shopping ticket">Daily shopping
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total ticket">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="Education ticket-boss expense-ticket" data-category="Education">
+                    <div class="books ticket">Books
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="tution ticket">Tution / Coaching
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="stationary ticket">stationary
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="entertainment ticket-boss expense-ticket" data-category="Lifestyle-Entertainment">
+                    <div class="movies ticket">Movies/ OTT
+                        <input type="number" name="amount" placeholder="Enter amount">
+
+                    </div>
+                    <div class="games ticket">games
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="shopping ticket">shopping
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="gifts ticket">gifts
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="health ticket-boss expense-ticket" data-category="Health">
+                    <div class="medicines ticket">Medicines
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="doctor-visit ticket">doctor visit
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="regular-checkups ticket">Regular checkups
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+                <div class="savings ticket-boss expense-ticket" data-category="Savings">
+                    <div class="investments ticket">Investments
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="emergency-fund ticket">Emergency funds
+                        <input type="number" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="incomeSection" style="display:none;">
+            <div class="summary-section">
+                <div class="title-for-income">
+                    <h1>Please select the mode of your <br> Monthy Income</h1>
+
+                    <div class="income-ticket">
+                        <span class="expenses-text">Income</span>
+                    </div>
+                </div>
+            </div>
+            <div class="more-select">
+                <div class="chart-container chart-container-income">
+                    <h2>Income Distribution</h2>
+                    <canvas id="incomeChart"></canvas>
+                </div>
+                <div class="income-ticket ticket-boss">
+                    <div class="ticket">
+                        Business / Freelancing
+                        <input type="number" placeholder="Enter amount">
+                    </div>
+                    <div class="ticket">
+                        Salary
+                        <input type="number" placeholder="Enter amount">
+                    </div>
+                    <div class="ticket">
+                        Investments
+                        <input type="number" placeholder="Enter amount">
+                    </div>
+                    <div class="ticket">
+                        Rental / Passive
+                        <input type="number" placeholder="Enter amount">
+                    </div>
+                    <div class="ticket">
+                        Other Income
+                        <input type="number" placeholder="Enter amount">
+                    </div>
+
+                    <div class="category-total">
+                        Total: ₹<span class="total-value">0</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+       <div id="balanceSection" style="display:none;">
+    <div class="summary-section">
+        <div class="title-for-income">
+            <h1>Your Monthly Balance Summary</h1>
+
+            <div class="income">
+                <span class="expenses-text">Balance</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="more-select balance-layout">
+        <h1>Your Balance is here...</h1>
+
+        <div class="balance-card">
+            <div class="balance-row">
+                <span>Total Income</span>
+                <strong>₹<span id="balanceIncome">0</span></strong>
+            </div>
+
+            <div class="balance-row">
+                <span>Total Expenses</span>
+                <strong>₹<span id="balanceExpenses">0</span></strong>
+            </div>
+            <div class="balance-row net">
+                <span>Net Balance</span>
+                <strong>₹<span id="netBalance">0</span></strong>
+            </div>
+
+            <div id="balanceStatus" class="balance-status">
+                Status
+            </div>
+        </div>
+        <div class="chart-container chart-container-balance">
+            <h2>Income vs Expenses</h2>
+            <canvas id="balanceChart"></canvas>
+        </div>
+
+    </div>
+</div>
+
+
+
+    </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
