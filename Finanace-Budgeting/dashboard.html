@@ -25,6 +25,7 @@
             <button class="signUp"><Strong>Sign Up</Strong></button>
         </div>
     </div>
+    <p id="monthLabel"></p>
     <div class="Finance-Tracker-Title">
         <h1>Personal Finance Tracker</h1>
     </div>
@@ -49,6 +50,7 @@
                     <h1>Please select all your<br>monthly expenses</h1>
                     <div class="expenses">
                         <span class="expenses-text">Expenses</span>
+                        <button id="resetFilter">Show All</button>
                         <select class="choose" name="type">
                             <option value="">Select--</option>
                             <option value="Basic-living-expenses" data-category="Basic-living-Expenses">Basic living
@@ -234,51 +236,92 @@
             </div>
         </div>
 
-       <div id="balanceSection" style="display:none;">
-    <div class="summary-section">
-        <div class="title-for-income">
-            <h1>Your Monthly Balance Summary</h1>
+        <div id="balanceSection" style="display:none;">
 
-            <div class="income">
-                <span class="expenses-text">Balance</span>
+            <!-- TITLE -->
+            <div class="summary-section">
+                <div class="title-for-income">
+                    <h1>Your Monthly Balance Summary</h1>
+                    <div class="income">
+                        <span class="expenses-text">Balance</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="more-select balance-layout">
+
+                <!-- LEFT : SUMMARY CARD -->
+                <div class="balance-card">
+
+                    <h3 class="balance-title">Monthly Financial Health</h3>
+
+                    <p class="balance-subtitle">
+                        Overview of your income, spending & savings
+                    </p>
+
+                    <!-- ACTIONS -->
+                    <div class="balance-actions">
+                        <button id="reviewExpensesBtn" class="action-btn">
+                            Review Expenses
+                        </button>
+
+                        <!-- ONLY ONE Set Budget button -->
+                        <button id="setBudgetBtn" class="action-btn outline">
+                            Set Budget
+                        </button>
+                    </div>
+
+                    <!-- SUMMARY ROWS -->
+                    <div class="balance-row">
+                        <span>Total Income</span>
+                        <strong>₹<span id="balanceIncome">0</span></strong>
+                    </div>
+
+                    <div class="balance-row">
+                        <span>Total Expenses</span>
+                        <strong>₹<span id="balanceExpenses">0</span></strong>
+                    </div>
+
+                    <div class="balance-row">
+                        <span>Monthly Budget</span>
+                        <strong>₹<span id="monthlyBudget">0</span></strong>
+                    </div>
+
+                    <!-- WARNING -->
+                    <div id="budgetWarning" class="budget-warning hidden">
+                        ⚠️ You are exceeding your monthly budget
+                    </div>
+
+                    <!-- NET BALANCE -->
+                    <div class="balance-row net">
+                        <span>Net Balance</span>
+                        <strong>₹<span id="netBalance">0</span></strong>
+                    </div>
+
+                    <!-- STATUS -->
+                    <div id="balanceStatus" class="balance-status">
+                        Status
+                    </div>
+
+                    <!-- INSIGHT -->
+                    <p id="spendingInsight" class="balance-insight"></p>
+
+                </div>
+
+                <!-- RIGHT : CHART -->
+                <div class="chart-container chart-container-balance">
+                    <p class="chart-subtitle">
+                        Visual comparison of earnings vs spending
+                    </p>
+
+                    <h2>Income vs Expenses</h2>
+                    <canvas id="balanceChart"></canvas>
+                </div>
+
             </div>
         </div>
-    </div>
 
-    <div class="more-select balance-layout">
-        <h1>Your Balance is here...</h1>
-
-        <div class="balance-card">
-            <div class="balance-row">
-                <span>Total Income</span>
-                <strong>₹<span id="balanceIncome">0</span></strong>
-            </div>
-
-            <div class="balance-row">
-                <span>Total Expenses</span>
-                <strong>₹<span id="balanceExpenses">0</span></strong>
-            </div>
-            <div class="balance-row net">
-                <span>Net Balance</span>
-                <strong>₹<span id="netBalance">0</span></strong>
-            </div>
-
-            <div id="balanceStatus" class="balance-status">
-                Status
-            </div>
-        </div>
-        <div class="chart-container chart-container-balance">
-            <h2>Income vs Expenses</h2>
-            <canvas id="balanceChart"></canvas>
-        </div>
-
-    </div>
-</div>
-
-
-
-    </div>
-    </div>
     <script src="dashboard.js"></script>
 </body>
 
