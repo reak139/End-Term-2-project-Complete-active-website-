@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <div class="Finance-Tracker-Title">
+        <h1>Personal Finance Tracker</h1>
+    </div>
     <div class="panel">
         <div class="logo">
             <img src="https://png.pngtree.com/png-clipart/20220924/original/pngtree-business-financial-logo-png-image_8629794.png"
@@ -24,11 +27,9 @@
         <div class="sign-Up">
             <button class="signUp"><Strong>Sign Up</Strong></button>
         </div>
+        <button id="themeToggle">🌙 Dark Mode</button>
     </div>
     <p id="monthLabel"></p>
-    <div class="Finance-Tracker-Title">
-        <h1>Personal Finance Tracker</h1>
-    </div>
     <div class="home">
         <div class="button">
             <div class="mode-selector">
@@ -73,7 +74,13 @@
                     <h2>Expense Distribution</h2>
                     <canvas id="expenseChart"></canvas>
                 </div>
+                <div class="spending-breakdown">
+                    <h2>Spending Breakdown (Top Categories)</h2>
 
+                    <div id="breakdownList">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
                 <div class="Basic-living-Expenses ticket-boss expense-ticket" data-category="Basic-living-expenses">
                     <div class="rent ticket">Rent
                         <input type="number" name="amount" placeholder="Enter amount">
@@ -241,10 +248,41 @@
             <!-- TITLE -->
             <div class="summary-section">
                 <div class="title-for-income">
-                    <h1>Your Monthly Balance Summary</h1>
+                    <!-- <h1>Your Monthly Balance Summary</h1>
                     <div class="income">
                         <span class="expenses-text">Balance</span>
+                    </div> -->
+                    <div class="balance-header">
+                        <h1>Your Monthly Balance Summary</h1>
+                        <p class="balance-header-sub">
+                            A quick overview of how your money performed this month
+                        </p>
+
+                        <div class="balance-header-tags">
+                            <span class="tag active">Current Month</span>
+                            <span class="tag">Financial Health</span>
+                            <span class="tag">Insights</span>
+                        </div>
+                        <div id="tabContent">
+
+                            <!-- CURRENT MONTH -->
+                            <div id="tab-current" class="tab-section active"></div>
+
+                            <!-- FINANCIAL HEALTH -->
+                            <div id="tab-health" class="tab-section hidden">
+                                <h3 id="healthStatus"></h3>
+                                <p id="healthMessage"></p>
+                            </div>
+
+                            <!-- INSIGHTS -->
+                            <div id="tab-insights" class="tab-section hidden">
+                                <ul id="insightsList"></ul>
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
             </div>
 
@@ -287,6 +325,15 @@
                         <span>Monthly Budget</span>
                         <strong>₹<span id="monthlyBudget">0</span></strong>
                     </div>
+                    <div class="budget-progress">
+                        <div class="progress-label">
+                            Budget Usage: <span id="budgetPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="budgetProgressFill"></div>
+                        </div>
+                    </div>
+
 
                     <!-- WARNING -->
                     <div id="budgetWarning" class="budget-warning hidden">
@@ -322,7 +369,7 @@
             </div>
         </div>
 
-    <script src="dashboard.js"></script>
+        <script src="dashboard.js"></script>
 </body>
 
 </html>
