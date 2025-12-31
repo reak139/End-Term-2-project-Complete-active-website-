@@ -571,6 +571,7 @@ body {
     border: solid rgba(246, 232, 232, 0.273);
     padding: 20px;
     border-radius: 10%;
+    margin: 0 500px;
 }
 
 .balance-header h1 {

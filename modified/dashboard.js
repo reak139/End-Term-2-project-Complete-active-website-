@@ -165,12 +165,12 @@ function updateBalance() {
         insightEl.textContent = "Your expenses exceed your income.";
     }
     // Update balance chart
-balanceChart.data.datasets[0].data = [totalIncome, totalExpense];
-balanceChart.update();
+    balanceChart.data.datasets[0].data = [totalIncome, totalExpense];
+    balanceChart.update();
 
-updateFinancialHealth();
-updateInsights();
-updateBudgetUI();
+    updateFinancialHealth();
+    updateInsights();
+    updateBudgetUI();
 
 
 }
@@ -200,8 +200,8 @@ modeCards.forEach(card => {
         const mode = card.dataset.mode;
 
         expensesSection.style.display = mode === "expenses" ? "block" : "none";
-        incomeSection.style.display   = mode === "income"   ? "block" : "none";
-        balanceSection.style.display  = mode === "balance"  ? "block" : "none";
+        incomeSection.style.display = mode === "income" ? "block" : "none";
+        balanceSection.style.display = mode === "balance" ? "block" : "none";
 
         if (mode === "balance") updateBalance();
     });
@@ -228,8 +228,9 @@ const expenseTickets = document.querySelectorAll(".expense-ticket");
 
 // store original parent
 expenseTickets.forEach(ticket => {
-    ticket.dataset.originalParent = ticket.parentElement.className;
+    ticket.dataset.originalParentId = ticket.parentElement.id;
 });
+
 
 sideButtons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -238,21 +239,26 @@ sideButtons.forEach(btn => {
         const view = btn.dataset.view;
         const category = btn.dataset.category;
 
-        // ===== OVERVIEW =====
         if (view === "overview") {
             chartContainer.style.display = "block";
             breakdownContainer.style.display = "block";
 
             expenseTickets.forEach(ticket => {
-                ticket.style.display = "none";
-                document
-                  .querySelector(".ticket-boss")
-                  .appendChild(ticket);
+                const originalParent = document.getElementById(
+                    ticket.dataset.originalParentId
+                );
+
+                if (originalParent && ticket.parentElement !== originalParent) {
+                    originalParent.appendChild(ticket); // restore ONLY if moved
+                }
+
+                ticket.style.display = "none"; // always hide tickets in overview
             });
 
             sidebar.classList.remove("open");
             return;
         }
+
 
         // ===== CATEGORY VIEW =====
         chartContainer.style.display = "none";
@@ -304,22 +310,22 @@ function updateFinancialHealth() {
         healthStatus.textContent = "Excellent Financial Health 💪";
         healthMessage.textContent =
             "You are saving more than 30% of your income. Keep it up!";
-    } 
+    }
     else if (savingRate >= 10) {
         healthStatus.textContent = "Stable Financial Health 🙂";
         healthMessage.textContent =
             "You have a decent saving rate, but there is room for improvement.";
-    } 
-    else if(savingRate<10 && savingRate>0) {
+    }
+    else if (savingRate < 10 && savingRate > 0) {
         healthStatus.textContent = "Poor Financial Health ⚠️";
         healthMessage.textContent =
             "Your expenses are too close to (or exceeding) your income.";
-    }else{
-        if(savingRate==0){
-            healthStatus.textContent="Please first enter the values required if so or you are left with no money."
-        }else if(savingRate<0){
-            healthStatus.textContent="You are in debt"
-            healthMessage.textContent=""
+    } else {
+        if (savingRate == 0) {
+            healthStatus.textContent = "Please first enter the values required if so or you are left with no money."
+        } else if (savingRate < 0) {
+            healthStatus.textContent = "You are in debt"
+            healthMessage.textContent = ""
         }
     }
 }
