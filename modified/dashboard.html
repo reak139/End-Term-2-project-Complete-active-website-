@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+     TOP PANEL
+========================= -->
+    <div class="top-panel">
+
+        <div class="Finance-Tracker-Title">
+            <h1>FinSight Dashboard</h1>
+            <p id="monthLabel"></p>
+        </div>
+
+        <div class="mode-selector">
+            <div class="mode-card active" data-mode="expenses">💸 <span>Expenses</span></div>
+            <div class="mode-card" data-mode="income">💰 <span>Income</span></div>
+            <div class="mode-card" data-mode="balance">📊 <span>Balance</span></div>
+        </div>
+
+    </div>
+    <div class="home">
+
+        <div class="expensesSection">
+
+            <div class="expense-layout">
+                <div class="expense-sidebar">
+
+                    <button class="toggle-btn">☰</button>
+
+                    <button class="side-btn" data-view="overview">
+                        📊
+                        <span>Overview</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Basic-living-expenses">
+                        🏠 <span>Basic Living</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Transportation">
+                        🚌 <span>Transport</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Food">
+                        🍔 <span>Food</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Education">
+                        🎓 <span>Education</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Lifestyle-Entertainment">
+                        🎬 <span>Lifestyle</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Health">
+                        🏥 <span>Health</span>
+                    </button>
+
+                    <button class="side-btn" data-category="Savings">
+                        💰 <span>Savings</span>
+                    </button>
+                </div>
+                <div class="visuals">
+                    <div class="chart-container">
+                        <h2>Expense Distribution</h2>
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                    <div class="spending-breakdown">
+                        <h2>Spending Breakdown (Top 3 Categories)</h2>
+                        <div id="breakdownBars" class="breakdown-bars"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="expense-content">
+
+                <div class="more-select">
+
+                    <div class="Basic-living-Expenses ticket-boss expense-ticket" data-category="Basic-living-expenses">
+                        <h1>Foundational Living Expenses 🏠</h1>
+                        <div class="rent ticket common">Rent 🏠
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Electricity-bill ticket common ">Electricity Bill 💡
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Water-Bill ticket common">Water Bill 🚿
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Internet ticket common">Internet / Mobile Recharge 📱
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Groceries ticket common">Groceries 🛒
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+                    </div>
+
+                    <div class="Transportation ticket-boss expense-ticket" data-category="Transportation">
+                        <h1>Commute Costs 🚌</h1>
+                        <div class="fuel ticket common">Fuel ⛽
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="cab ticket common">Cab / Auto 🚕
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Bus ticket common">Bus / Metro Pass 🚇
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="vehicle ticket common">vehicle 🚗
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total ">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+
+                    </div>
+                    <div class="Food ticket-boss expense-ticket" data-category="Food">
+                        <h1>Daily Nourishment 🍽️</h1>
+                        <div class="Dining-Out ticket common">Dining-Out 🍔
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="Tea ticket common">Tea / Coffee / snacks ☕
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total ticket">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+
+                    </div>
+                    <div class="Education ticket-boss expense-ticket" data-category="Education">
+                        <h1>Knowledge Investment 🎓</h1>
+                        <div class="books ticket common">Books 📚
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="tution ticket common">Tution / Coaching 🎓
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="stationary ticket common">stationary ✏️
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+
+                    </div>
+                    <div class="entertainment ticket-boss expense-ticket" data-category="Lifestyle-Entertainment">
+                        <h1>Lifestyle and Leisure 🎬</h1>
+                        <div class="movies ticket common">Movies/ OTT 🎬
+                            <input type="number" name="amount" placeholder="Enter amount">
+
+                        </div>
+                        <div class="games ticket common">games 🎮
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="shopping ticket common">shopping 🛍️
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="gifts ticket common">gifts 🎁
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+
+                    </div>
+                    <div class="health ticket-boss expense-ticket" data-category="Health">
+                        <h1>Wellness & Care 🏥</h1>
+                        <div class="medicines ticket common">Medicines 💊
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="doctor-visit ticket common">doctor visit 👨‍⚕️
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="regular-checkups ticket common">Regular checkups ❤️
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+
+                    </div>
+
+                    <div class="savings ticket-boss expense-ticket" data-category="Savings">
+                        <h1>Future Reserves 💰</h1>
+                        <div class="investments ticket common">Investments📈
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="emergency-fund ticket common">Emergency funds 🚨
+                            <input type="number" name="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="category-total">
+                            Total: ₹<span class="total-value">0</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="incomeSection" style="display:none;">
+            <div class="summary-section">
+                <div class="title-for-income">
+                    <h1>Please select the mode of your <br> Monthy Income</h1>
+
+                    <div class="income-ticket">
+
+                        <div class="more-select income-select">
+                            <div class="income-ticket ticket-boss">
+                                <div class="ticket common">
+                                    Business / Freelancing
+                                    <input type="number" placeholder="Enter amount">
+                                </div>
+                                <div class="ticket common">
+                                    Salary
+                                    <input type="number" placeholder="Enter amount">
+                                </div>
+                                <div class="ticket common">
+                                    Investments
+                                    <input type="number" placeholder="Enter amount">
+                                </div>
+                                <div class="ticket common">
+                                    Rental / Passive
+                                    <input type="number" placeholder="Enter amount">
+                                </div>
+                                <div class="ticket common">
+                                    Other Income
+                                    <input type="number" placeholder="Enter amount">
+                                </div>
+
+                                <div class="category-total">
+                                    Total: ₹<span class="total-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="balanceSection" style="display:none;">
+            <!-- unchanged -->
+              <div class="summary-section">
+                <div class="title-for-income">
+                    <!-- <h1>Your Monthly Balance Summary</h1>
+                    <div class="income">
+                        <span class="expenses-text">Balance</span>
+                    </div> -->
+                    <div class="balance-header">
+                        <h1>Your Monthly Balance Summary</h1>
+                        <p class="balance-header-sub">
+                            A quick overview of how your money performed this month
+                        </p>
+
+                        <div class="balance-header-tags">
+                            <span class="tag active">Current Month</span>
+                            <span class="tag">Financial Health</span>
+                            <span class="tag">Insights</span>
+                        </div>
+                        <div id="tabContent">
+
+                            <!-- CURRENT MONTH -->
+                            <div id="tab-current" class="tab-section active"></div>
+
+                            <!-- FINANCIAL HEALTH -->
+                            <div id="tab-health" class="tab-section hidden">
+                                <h3 id="healthStatus"></h3>
+                                <p id="healthMessage"></p>
+                            </div>
+
+                            <!-- INSIGHTS -->
+                            <div id="tab-insights" class="tab-section hidden">
+                                <ul id="insightsList"></ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="more-select balance-layout">
+
+                <!-- LEFT : SUMMARY CARD -->
+                <div class="balance-card">
+
+                    <h3 class="balance-title">Monthly Financial Health</h3>
+
+                    <p class="balance-subtitle">
+                        Overview of your income, spending & savings
+                    </p>
+
+                    <!-- ACTIONS -->
+                    <div class="balance-actions">
+                        <button id="reviewExpensesBtn" class="action-btn">
+                            Review Expenses
+                        </button>
+
+                        <!-- ONLY ONE Set Budget button -->
+                        <button id="setBudgetBtn" class="action-btn outline">
+                            Set Budget
+                        </button>
+                    </div>
+
+                    <!-- SUMMARY ROWS -->
+                    <div class="balance-row">
+                        <span>Total Income</span>
+                        <strong>₹<span id="balanceIncome">0</span></strong>
+                    </div>
+
+                    <div class="balance-row">
+                        <span>Total Expenses</span>
+                        <strong>₹<span id="balanceExpenses">0</span></strong>
+                    </div>
+
+                    <div class="balance-row">
+                        <span>Monthly Budget</span>
+                        <strong>₹<span id="monthlyBudget">0</span></strong>
+                    </div>
+                    <div class="budget-progress">
+                        <div class="progress-label">
+                            Budget Usage: <span id="budgetPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="budgetProgressFill"></div>
+                        </div>
+                    </div>
+
+
+                    <!-- WARNING -->
+                    <div id="budgetWarning" class="budget-warning hidden">
+                        ⚠️ You are exceeding your monthly budget
+                    </div>
+
+                    <!-- NET BALANCE -->
+                    <div class="balance-row net">
+                        <span>Net Balance</span>
+                        <strong>₹<span id="netBalance">0</span></strong>
+                    </div>
+
+                    <!-- STATUS -->
+                    <div id="balanceStatus" class="balance-status">
+                        Status
+                    </div>
+
+                    <!-- INSIGHT -->
+                    <p id="spendingInsight" class="balance-insight"></p>
+
+                </div>
+
+                <!-- RIGHT : CHART -->
+                <div class="chart-container chart-container-balance">
+                    <p class="chart-subtitle">
+                        Visual comparison of earnings vs spending
+                    </p>
+
+                    <h2>Income vs Expenses</h2>
+                    <canvas id="balanceChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="dashboard.js"></script>
+</body>
+
+</html>
