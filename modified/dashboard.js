@@ -179,10 +179,17 @@ function updateBalance() {
  * INPUT LISTENERS
  *************************/
 document.querySelectorAll('.expense-ticket input[type="number"]')
-    .forEach(i => i.addEventListener("input", updateExpenses));
+    .forEach(i => {
+        i.addEventListener("input", updateExpenses)
+        i.addEventListener("input", saveAppState);
+    });
+    
 
 document.querySelectorAll('#incomeSection input[type="number"]')
-    .forEach(i => i.addEventListener("input", updateIncome));
+    .forEach(i => {
+        i.addEventListener("input", updateIncome)
+        i.addEventListener("input", saveAppState);
+    });
 
 /*************************
  * MODE SWITCH
@@ -204,6 +211,7 @@ modeCards.forEach(card => {
         balanceSection.style.display = mode === "balance" ? "block" : "none";
 
         if (mode === "balance") updateBalance();
+        saveAppState(); 
     });
 });
 
@@ -274,6 +282,9 @@ sideButtons.forEach(btn => {
         });
 
         sidebar.classList.remove("open");
+        btn.classList.add("active");
+saveAppState();
+
     });
 });
 
@@ -379,6 +390,8 @@ setBudgetBtn.addEventListener("click", () => {
     document.getElementById("monthlyBudget").textContent = monthlyBudget;
 
     updateBudgetUI();
+    saveAppState();
+
 });
 /*************************
  * BALANCE CHART
@@ -412,4 +425,92 @@ const balanceChart = new Chart(balanceCtx, {
         }
     }
 });
+
+const APP_STATE_KEY = "expenseAppState_v1";
+
+function saveAppState() {
+    const state = {
+        expenses: {},
+        income: {},
+        monthlyBudget,
+        activeMode: document.querySelector(".mode-card.active")?.dataset.mode || "expenses",
+        sidebarView: document.querySelector(".side-btn.active")?.dataset.view || "overview",
+        sidebarCategory: document.querySelector(".side-btn.active")?.dataset.category || null
+    };
+
+    // save expense inputs
+    document.querySelectorAll(".expense-ticket").forEach(ticket => {
+        const cat = ticket.dataset.category;
+        state.expenses[cat] = [];
+
+        ticket.querySelectorAll('input[type="number"]').forEach(input => {
+            state.expenses[cat].push(input.value);
+        });
+    });
+
+    // save income inputs
+    document.querySelectorAll("#incomeSection input[type='number']").forEach(
+        (input, idx) => state.income[idx] = input.value
+    );
+
+    localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
+}
+function restoreAppState() {
+    const raw = localStorage.getItem(APP_STATE_KEY);
+    if (!raw) return;
+
+    const state = JSON.parse(raw);
+
+    // restore expense inputs
+    document.querySelectorAll(".expense-ticket").forEach(ticket => {
+        const cat = ticket.dataset.category;
+        if (!state.expenses[cat]) return;
+
+        const inputs = ticket.querySelectorAll('input[type="number"]');
+        inputs.forEach((input, i) => {
+            input.value = state.expenses[cat][i] || "";
+        });
+    });
+
+    // restore income inputs
+    document.querySelectorAll("#incomeSection input[type='number']").forEach(
+        (input, idx) => {
+            input.value = state.income?.[idx] || "";
+        }
+    );
+
+    // restore budget
+    if (state.monthlyBudget) {
+        monthlyBudget = state.monthlyBudget;
+        document.getElementById("monthlyBudget").textContent = monthlyBudget;
+    }
+
+    // 🔥 recompute everything using YOUR existing logic
+    updateExpenses();
+    updateIncome();
+    forceUpdateIncome(); 
+    updateBudgetUI();
+    updateBalance();
+    if (state.activeMode) {
+        const modeCard = document.querySelector(
+            `.mode-card[data-mode="${state.activeMode}"]`
+        );
+        modeCard?.click(); // 🔥 triggers your existing mode logic
+    }
+
+    // restore sidebar view
+    if (state.sidebarView === "overview") {
+        document.querySelector('[data-view="overview"]')?.click();
+    } 
+    else if (state.sidebarCategory) {
+        document.querySelector(
+            `.side-btn[data-category="${state.sidebarCategory}"]`
+        )?.click();
+    }
+}
+document.addEventListener("DOMContentLoaded", restoreAppState);
+function forceUpdateIncome() {
+    const incomeBox = incomeSection.querySelector('.ticket-boss');
+    totalIncome = calculateCategoryTotal(incomeBox);
+}
 
